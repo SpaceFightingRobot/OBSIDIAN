@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
 
 	//Movement//
 
-	private Vector3 PlayerDir;
 	private Vector3 PlayerPos;
 	protected Vector3 PlayerVel;
 	protected Vector3 PlayerRot;
@@ -25,7 +24,9 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{	
-		HandleInput();	
+		HandleInput();
+		HandlePlayerMovement();
+
 	}
 
 	
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour {
 			//Go right
 
 		
+	}
+
+
+	void HandlePlayerMovement()
+	{
+		transform.position = PlayerPos + PlayerVel;
+		transform.rotation = PlayerRot;
+
 	}
 
 

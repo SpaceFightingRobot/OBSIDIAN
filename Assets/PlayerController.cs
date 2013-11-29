@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour {
 	public bool IsInAir = false;
 	
 	private Vector3 PlayerPos;
-	private Quaternion PlayerNewRot;
+	private Vector3 PlayerNewRot;
 
-	protected Quaternion PlayerRot;
+	protected Vector3 PlayerRot;
 	protected float PlayerSpeed;
 	protected Vector3 PlayerVelDir;
 	protected Vector3 PlayerVel;
@@ -43,38 +43,37 @@ public class PlayerController : MonoBehaviour {
 	
 	void HandleInput()
 	{
-		PlayerPos = transform.position;
-		PlayerRot = transform.rotation;
+		PlayerRot = transform.rotation.eulerAngles;
+		PlayerPos = transform.position;	
 		//Check player movement
 		if(Mathf.Abs(Input.GetAxis("LeftRight")) > 0 || Mathf.Abs(Input.GetAxis("ForwardBackward")) > 0  )
 			PlayerVelDir = new Vector3(Input.GetAxis("LeftRight"),0,Input.GetAxis("ForwardBackward"));
 
 			if(PlayerSpeed != PlayerMaxMoveSpeed)
 				PlayerSpeed += PlayerAcceleration;
-		//if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0)
-			//PlayerNewRot = new Quaternion(0,Input.GetAxis("Mouse Y"),0,0) * PlayerRot ;
+
+		if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0)
+			PlayerNewRot = new Vector3(Input.GetAxis("Mouse Y"),-Input.GetAxis("Mouse X"),0);
 
 
-		
+
 	}
 
 
 	void HandlePlayerMovement()
 	{
 
-		PlayerVel = PlayerVelDir * PlayerSpeed;
-
+		PlayerVel = PlayerVelDir  * PlayerSpeed ;
 
 		//DEBUG
 		Debug.DrawLine (PlayerPos, PlayerPos + PlayerVel , Color.red);	
-		//Debug.Log("Mouse" + Input.GetAxis("Mouse X") + "   " + Input.GetAxis("Mouse X");
+		Debug.Log(PlayerRot + "     " + PlayerNewRot);
 
 
 
 		//Set Player Position
 		transform.position = PlayerPos + PlayerVel * Time.deltaTime;
-		//transform.rotation = PlayerNewRot;
-
+		transform.Rotate(PlayerNewRot * PlayerTurnSpeed);
 
 	}
 

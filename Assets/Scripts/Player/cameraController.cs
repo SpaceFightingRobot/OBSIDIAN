@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿///<summary>
+/// CAMERA CONTROLLER
+/// PROJECT EMBER
+/// Made by: Burning
+///</summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class cameraController : MonoBehaviour {
 
 	public float CameraSmooth = 10f;
 
-	private Transform player;
+	private GameObject Player;
 
 
 	void Awake() {
-		//player = GameObject.FindGameObjectWithTag("Player").transform;
+		//Player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 
 	void Update () {
-		//Debug.Log (Player.position);
+		//Debug.Log (player.position);
 	}
 }

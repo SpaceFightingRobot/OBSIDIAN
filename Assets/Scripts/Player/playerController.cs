@@ -50,8 +50,7 @@ public class playerController : MonoBehaviour {
 		//Check if Mouse Rotation
 		if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0)
 		{
-			//reset rotation and assing new one
-			playerNewRot = Vector3.zero;
+			//Adding input to rotation
 			playerNewRot = new Vector3(Input.GetAxis("Mouse Y"),-Input.GetAxis("Mouse X"),0);
 		}
 
@@ -59,11 +58,7 @@ public class playerController : MonoBehaviour {
 		//Check if input LeftRiht or ForwardBackard
 		if(Mathf.Abs(Input.GetAxis("LeftRight")) > 0 || Mathf.Abs(Input.GetAxis("ForwardBackward")) > 0  )
 		{
-			//reset velocity and assing new one
-			playerPosition = Vector3.zero;
-			playerVelocity = Vector3.zero;
-
-			//Assing velocity with the input values
+			//Adding velocity with the input values
 			playerVelocity = new Vector3(Input.GetAxis("LeftRight"),0,Input.GetAxis("ForwardBackward"));
 		
 		} 
@@ -110,6 +105,16 @@ public class playerController : MonoBehaviour {
 
 		//Rotate player
 		transform.eulerAngles -= playerNewRot * playerTurnSpeed;
+
+		//Reseting Playerrotation to prevent sliding
+		playerNewRot = Vector3.zero;
+
+		//reset velocity 
+		playerPosition = Vector3.zero;
+		playerVelocity = Vector3.zero;
+
+		
+		
 
 	}
 

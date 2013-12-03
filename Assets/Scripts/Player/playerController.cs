@@ -23,8 +23,14 @@ public class playerController : MonoBehaviour {
 	protected Vector3 playerPosition = Vector3.zero;
 	protected Vector3 playerNewRot = Vector3.zero;
 	protected Vector3 playerRot = Vector3.zero;
+	protected Vector3 grapplePos = Vector3.zero;
 
+
+	protected bool isGrappledLeft = false;
+	protected bool isGrappledRight = false;
 	protected bool playerIsJumping = false;
+
+
 
 
 
@@ -72,6 +78,16 @@ public class playerController : MonoBehaviour {
 
 		}
 
+		//Check if player is grappling
+		if(Input.GetButton("GrappleRight"))
+		{
+
+			playerGrapple();
+			Debug.Log("grapple INput");
+
+		}
+
+
 
 
 	}
@@ -97,7 +113,22 @@ public class playerController : MonoBehaviour {
 			playerPosition.y = playerJumpStrenght;
 			playerIsJumping = false;
 		}
-		
+
+		//Add Grapple
+		if(isGrappledRight)
+		{
+			playerPosition = Vector3.Lerp(playerPosition,grapplePos,3 * Time.deltaTime);
+			Debug.DrawLine(transform.position,grapplePos,Color.red);
+			Debug.Log("Player" + playerPosition);
+			Debug.Log(grapplePos);
+
+		}
+		Debug.Log(grapplePos);
+
+
+
+
+	
 		
 		//Move Character
 		charController.Move(playerPosition * Time.deltaTime);
@@ -115,6 +146,27 @@ public class playerController : MonoBehaviour {
 
 		
 		
+
+	}
+
+
+	void playerGrapple()
+	{
+		Vector3 playerRayPos = transform.position;
+		Vector3 playerRayForward = transform.TransformDirection(Vector3.forward);
+	
+		                                                       
+		RaycastHit rayHit;
+		if(Physics.Raycast(playerRayPos,playerRayForward,out rayHit))
+		{
+			grapplePos = rayHit.transform.position;
+
+		
+		}
+
+		isGrappledRight = true;
+	
+
 
 	}
 

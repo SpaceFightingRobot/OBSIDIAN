@@ -117,10 +117,9 @@ public class playerController : MonoBehaviour {
 		//Add Grapple
 		if(isGrappledRight)
 		{
-			playerPosition = Vector3.Lerp(playerPosition,grapplePos,3 * Time.deltaTime);
-			Debug.DrawLine(transform.position,grapplePos,Color.red);
-			Debug.Log("Player" + playerPosition);
-			Debug.Log(grapplePos);
+			playerPosition -= transform.position - grapplePos;
+			Debug.DrawLine(transform.position,grapplePos,Color.red);		
+			//NOT RELATIVE TO PLAYER <----------------------------------------
 
 		}
 		Debug.Log(grapplePos);
@@ -160,6 +159,7 @@ public class playerController : MonoBehaviour {
 		if(Physics.Raycast(playerRayPos,playerRayForward,out rayHit))
 		{
 			grapplePos = rayHit.transform.position;
+			//NOT RELATIVE TO PLAYER <----------------------------------------
 
 		
 		}

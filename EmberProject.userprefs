@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\playerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\playerController.cs" Line="130" Column="2" />
+      <File FileName="Assets\Scripts\Player\playerController.cs" Line="52" Column="2" />
       <File FileName="Assets\Scripts\Player\playerGrapple.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\cameraController.cs" Line="1" Column="1" />
     </Files>

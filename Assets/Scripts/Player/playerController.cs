@@ -46,9 +46,10 @@ public class playerController : MonoBehaviour {
 
 	void Start()
 	{
-		// Lock the cursor
 		Screen.lockCursor = true;
 	}
+
+
 	void playerInput()
 	{
 	
@@ -82,8 +83,7 @@ public class playerController : MonoBehaviour {
 		if(Input.GetButton("GrappleRight"))
 		{
 
-			playerGrapple();
-			Debug.Log("grapple INput");
+			playerGrapple();		
 
 		}
 
@@ -117,9 +117,12 @@ public class playerController : MonoBehaviour {
 		//Add Grapple
 		if(isGrappledRight)
 		{
-			playerPosition -= transform.position - grapplePos;
+			//Add grapplePos relative to transform to velocity
+			playerPosition +=   grapplePos - transform.position;
+
+			//Temorary grapple effect
 			Debug.DrawLine(transform.position,grapplePos,Color.red);		
-			//NOT RELATIVE TO PLAYER <----------------------------------------
+		
 
 		}
 		Debug.Log(grapplePos);
@@ -151,17 +154,15 @@ public class playerController : MonoBehaviour {
 
 	void playerGrapple()
 	{
+		//Raycast variables
 		Vector3 playerRayPos = transform.position;
 		Vector3 playerRayForward = transform.TransformDirection(Vector3.forward);
 	
-		                                                       
+		//Raycast for grappling position                                                    
 		RaycastHit rayHit;
 		if(Physics.Raycast(playerRayPos,playerRayForward,out rayHit))
 		{
-			grapplePos = rayHit.transform.position;
-			//NOT RELATIVE TO PLAYER <----------------------------------------
-
-		
+			grapplePos = rayHit.point;		
 		}
 
 		isGrappledRight = true;

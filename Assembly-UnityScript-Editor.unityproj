@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{A6D27153-DB91-6685-4D95-7548D14A4372}</ProjectGuid>
+	<ProjectGuid>{FEDE4F53-B89E-7115-F6D1-C71F63C13089}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+	<AssemblyName>Assembly-UnityScript-Editor</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,8 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\CopyCurvesToDuplicate.cs" />
-     <Compile Include="Assets\Frameworks\Locomotion System\Editor\LocomotionEditorClass.cs" />
+     <Compile Include="Assets\Editor\RenderCubemapWizard.js" />
+     <Compile Include="Assets\Editor\deactivateMeshRenderers.js" />
      <None Include="Assets\Shaders\ProgressBar.shader" />
      <None Include="Assets\Shaders\FadedAddSmooth.shader" />
      <None Include="Assets\Frameworks\Detonator\Resources\Detonator\Textures\HeatDistort.shader" />

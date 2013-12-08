@@ -16,25 +16,30 @@ public class playerController : MonoBehaviour {
 	public float playerTurnSpeed = 5f;
 	public float playerFriction = 5f;
 	public float playerJumpStrenght = 10f;
+	public float grappleSpeed = 10f;
 
 
 	protected CharacterController charController;
 	protected Vector3 playerVelocity = Vector3.zero;
 	protected Vector3 playerPosition = Vector3.zero;
+	protected Vector3 playerNewPosition = Vector3.zero;
+
 	protected Vector3 playerNewRot = Vector3.zero;
 	protected Vector3 playerRot = Vector3.zero;
-	protected Vector3 grapplePos = Vector3.zero;
 
 
-	protected bool isGrappledLeft = false;
-	protected bool isGrappledRight = false;
+	protected Vector3 grappleRightPos = Vector3.zero;
+	protected Vector3 grappleLeftPos = Vector3.zero;
+	protected Vector3 grappleVelocity = Vector3.zero;
+
+	protected bool isGrappled = false;
 	protected bool playerIsJumping = false;
+	protected bool isGrounded = false;
+	protected bool isInAir = false;
 
 
 
 
-
-	private Vector3 playerForwardVelocity = Vector3.zero;
 
 
 
@@ -49,91 +54,72 @@ public class playerController : MonoBehaviour {
 		Screen.lockCursor = true;
 	}
 
-
-	void playerInput()
+	void PlayerInput()
 	{
 	
 		
 		//Check if Mouse Rotation
 		if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0)
-		{
-			//Adding input to rotation
-			playerNewRot = new Vector3(Input.GetAxis("Mouse Y"),-Input.GetAxis("Mouse X"),0);
+		{			//Adding input to rotation
+			SetRotVelocity( new Vector3(Input.GetAxis("Mouse Y") , -Input.GetAxis("Mouse X"), 0) );
 		}
 
 
 		//Check if input LeftRiht or ForwardBackard
 		if(Mathf.Abs(Input.GetAxis("LeftRight")) > 0 || Mathf.Abs(Input.GetAxis("ForwardBackward")) > 0  )
-		{
-			//Adding velocity with the input values
-			playerVelocity = new Vector3(Input.GetAxis("LeftRight"),0,Input.GetAxis("ForwardBackward"));
-		
+		{			//Adding velocity with the input values
+			SetVelocity( new Vector3(Input.GetAxis("LeftRight" ), 0 , Input.GetAxis("ForwardBackward") ));		
 		} 
 
 
 		//Check if player is jumping
-		if(Input.GetButton("Jump") && charController.isGrounded)
-		{
-			playerIsJumping = true;
+		if(Input.GetButton("Jump") && isGrounded)
+		{	
+			PlayerJump();
 			// playerIsInAir = true;
-
 		}
 
 		//Check if player is grappling
 		if(Input.GetButton("GrappleRight"))
 		{
-
-			playerGrapple();		
+			PlayerGrappleRight();
+			isGrappled = !isGrappled;
 
 		}
-
-
-
-
 	}
 
-	void playerMovement()
+	void PlayerMovement()
 	{
+		isGrounded = charController.isGrounded;
 
+
+		Vector3 playerMoveVelocity = Vector3.zero;
 	
 
-	
-		//Transform local of the velocity to world so we know which direction its going
-		playerForwardVelocity = transform.TransformDirection(playerVelocity);
-
-		//Add Velocity + speed
-		playerPosition =  playerForwardVelocity * playerSpeed;
-
-		//Add Gravity
-		playerPosition.y += Physics.gravity.y;
-
-		//Add Jump
-		if(playerIsJumping)
+		if(isGrounded && !isGrappled)
 		{
-			playerPosition.y = playerJumpStrenght;
-			playerIsJumping = false;
-		}
-
-		//Add Grapple
-		if(isGrappledRight)
-		{
-			//Add grapplePos relative to transform to velocity
-			playerPosition +=   grapplePos - transform.position;
-
-			//Temorary grapple effect
-			Debug.DrawLine(transform.position,grapplePos,Color.red);		
-		
+			Vector3 playerForwardDir = Vector3.zero;
+			playerForwardDir = transform.TransformDirection(playerVelocity);
+			playerMoveVelocity = playerForwardDir  * playerSpeed * Time.deltaTime;
 
 		}
-		Debug.Log(grapplePos);
-
-
-
-
+		else
+		{		
+			playerMoveVelocity = playerVelocity;
+			Debug.Log("GRAPPLED");
 	
+		}
+
+
+
+
+		playerMoveVelocity.y += Physics.gravity.y;
+
+
+		playerNewPosition = playerMoveVelocity * playerSpeed;	
 		
 		//Move Character
-		charController.Move(playerPosition * Time.deltaTime);
+		charController.Move(playerNewPosition * Time.deltaTime);
 
 
 		//Rotate player
@@ -143,18 +129,35 @@ public class playerController : MonoBehaviour {
 		playerNewRot = Vector3.zero;
 
 		//reset velocity 
-		playerPosition = Vector3.zero;
-		playerVelocity = Vector3.zero;
+		playerPosition = transform.localPosition;
 
-		
-		
+
+
+		//add friction
+		if(playerVelocity != Vector3.zero && isGrounded)
+		{
+			playerVelocity /= playerFriction;
+		}
 
 	}
 
 
-	void playerGrapple()
+	void SetVelocity(Vector3 velocity)
 	{
-		//Raycast variables
+		playerVelocity = velocity ;
+	}
+
+
+	void SetRotVelocity(Vector3 velocity)
+	{
+		playerNewRot = velocity;
+	}
+
+
+
+
+	void PlayerGrappleRight()
+	{
 		Vector3 playerRayPos = transform.position;
 		Vector3 playerRayForward = transform.TransformDirection(Vector3.forward);
 	
@@ -162,22 +165,41 @@ public class playerController : MonoBehaviour {
 		RaycastHit rayHit;
 		if(Physics.Raycast(playerRayPos,playerRayForward,out rayHit))
 		{
-			grapplePos = rayHit.point;		
+			//Set grapple hook position
+			grappleRightPos = rayHit.point;		
 		}
 
-		isGrappledRight = true;
-	
+		//figure out velocity direction needed to get to grapplePos 
+		Vector3 grappleVelDir;
+		grappleVelDir = Vector3.Normalize( grappleRightPos - playerPosition );
+
+		//Add grapplespeed to that velocity
+		grappleVelocity = grappleVelDir * grappleSpeed;
+
+		//Set velocity to player
+		SetVelocity(grappleVelocity);
+
+	}
+
+	void PlayerJump()
+	{
+		Vector3 playerJumpVector = new Vector3(0,playerJumpStrenght,0);
+		SetVelocity(playerJumpVector);
+		isInAir = true;
+	}
+
+	void Update()
+	{
+		PlayerInput();
+		PlayerMovement();
 
 
 	}
 
-
-	void Update()
+	void OnDrawGizmosSelected() 
 	{
-		playerInput();
-		playerMovement();
-
-
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(grappleRightPos,new Vector3(1,1,1));
 	}
 
 }

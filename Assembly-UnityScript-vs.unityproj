@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{2D30A2D6-14CB-C4D8-B7C7-72C37D7D4D31}</ProjectGuid>
+	<ProjectGuid>{B6AFF605-B231-F00D-BCB8-BA150E1205AE}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,7 +46,94 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Models\Level\bloodGusher.js" />
+     <Compile Include="Assets\Scripts\Unity\ImageEffectsOrder.js" />
+     <Compile Include="Assets\Scripts\Unity\ShowFps.js" />
+     <Compile Include="Assets\Scripts\Unity\WaterShaderHelper.js" />
+     <Compile Include="Assets\Scripts\birds\CutsceneBirds.js" />
+     <Compile Include="Assets\Scripts\birds\Seagull.js" />
+     <Compile Include="Assets\Scripts\birds\SeagullFlightPath.js" />
+     <Compile Include="Assets\Scripts\birds\SeagullSoundHeat.js" />
+     <Compile Include="Assets\Scripts\cutscenes\CutsceneManager.js" />
+     <Compile Include="Assets\Scripts\cutscenes\DownChoperCutscene.js" />
+     <Compile Include="Assets\Scripts\cutscenes\ForestCutscene.js" />
+     <Compile Include="Assets\Scripts\cutscenes\ForestCutscenePlayer.js" />
+     <Compile Include="Assets\Scripts\cutscenes\HelicopterCutscene.js" />
+     <Compile Include="Assets\Scripts\cutscenes\StartCutscene.js" />
+     <Compile Include="Assets\Scripts\enemies\dummy\TrainingDummy.js" />
+     <Compile Include="Assets\Scripts\enemies\dummy\TrainingDummyPart.js" />
+     <Compile Include="Assets\Scripts\enemies\dummy\TrainingDummyPartDestructor.js" />
+     <Compile Include="Assets\Scripts\enemies\dummy\TrainingDummyPartHelper.js" />
+     <Compile Include="Assets\Scripts\enemies\turret\Turret.js" />
+     <Compile Include="Assets\Scripts\enemies\turret\TurretPart.js" />
+     <Compile Include="Assets\Scripts\enemies\turret\TurretPiston.js" />
+     <Compile Include="Assets\Scripts\graphics\AssignSkybox.js" />
+     <Compile Include="Assets\Scripts\graphics\CullLayers.js" />
+     <Compile Include="Assets\Scripts\graphics\DistanceDisable.js" />
+     <Compile Include="Assets\Scripts\graphics\ShotLight.js" />
+     <Compile Include="Assets\Scripts\graphics\SimpleRotation.js" />
+     <Compile Include="Assets\Scripts\graphics\SuperWater.js" />
+     <Compile Include="Assets\Scripts\graphics\UVScroller.js" />
+     <Compile Include="Assets\Scripts\huds\Achievment.js" />
+     <Compile Include="Assets\Scripts\huds\AchievmentScreen.js" />
+     <Compile Include="Assets\Scripts\huds\GUIOptimizer.js" />
+     <Compile Include="Assets\Scripts\huds\GameQualitySettings.js" />
+     <Compile Include="Assets\Scripts\huds\HudSpeedometer.js" />
+     <Compile Include="Assets\Scripts\huds\HudWeapons.js" />
+     <Compile Include="Assets\Scripts\huds\MainMenuScreen.js" />
+     <Compile Include="Assets\Scripts\huds\SoldierTarget.js" />
+     <Compile Include="Assets\Scripts\huds\SoundObjectAux.js" />
+     <Compile Include="Assets\Scripts\huds\TrainingStat.js" />
+     <Compile Include="Assets\Scripts\huds\TrainingStatistics.js" />
+     <Compile Include="Assets\Scripts\huds\sarge\SargeInstruction.js" />
+     <Compile Include="Assets\Scripts\huds\sarge\SargeManager.js" />
+     <Compile Include="Assets\Scripts\huds\sarge\SpeakOnTrigger.js" />
+     <Compile Include="Assets\Scripts\misc\AutoDestroy.js" />
+     <Compile Include="Assets\Scripts\misc\AxisVariation.js" />
+     <Compile Include="Assets\Scripts\misc\BlueLeaf.js" />
+     <Compile Include="Assets\Scripts\misc\BlueLeafSound.js" />
+     <Compile Include="Assets\Scripts\misc\DestroyOnHit.js" />
+     <Compile Include="Assets\Scripts\misc\DistanceFade.js" />
+     <Compile Include="Assets\Scripts\misc\DistanceFadeObject.js" />
+     <Compile Include="Assets\Scripts\misc\EaglesEye.js" />
+     <Compile Include="Assets\Scripts\misc\EndGameTrigger.js" />
+     <Compile Include="Assets\Scripts\misc\FadeLight.js" />
+     <Compile Include="Assets\Scripts\misc\FadeOnVisible.js" />
+     <Compile Include="Assets\Scripts\misc\FogAnimationHelper.js" />
+     <Compile Include="Assets\Scripts\misc\FriendlyChopper.js" />
+     <Compile Include="Assets\Scripts\misc\GameManager.js" />
+     <Compile Include="Assets\Scripts\misc\MainMenuEffects.js" />
+     <Compile Include="Assets\Scripts\misc\PauseSound.js" />
+     <Compile Include="Assets\Scripts\misc\SoundObject.js" />
+     <Compile Include="Assets\Scripts\misc\SoundObjectManager.js" />
+     <Compile Include="Assets\Scripts\misc\StartGameTrigger.js" />
+     <Compile Include="Assets\Scripts\misc\SyncAudioListener.js" />
+     <Compile Include="Assets\Scripts\misc\UVScroller_clouds.js" />
+     <Compile Include="Assets\Scripts\misc\UVScroller_simple 1.js" />
+     <Compile Include="Assets\Scripts\misc\UVScroller_simple.js" />
+     <Compile Include="Assets\Scripts\misc\UVScroller_water.js" />
+     <Compile Include="Assets\Scripts\misc\UVScroller_waterfall.js" />
+     <Compile Include="Assets\Scripts\misc\UnderwaterCamera.js" />
+     <Compile Include="Assets\Scripts\misc\streaming\IndustryLoader.js" />
+     <Compile Include="Assets\Scripts\misc\streaming\StreamingController.js" />
+     <Compile Include="Assets\Scripts\soldier\CharacterMotor.js" />
+     <Compile Include="Assets\Scripts\soldier\CharacterPusher.js" />
+     <Compile Include="Assets\Scripts\soldier\CutsceneFoot.js" />
+     <Compile Include="Assets\Scripts\soldier\Footsteps.js" />
+     <Compile Include="Assets\Scripts\soldier\HeadLookController.js" />
+     <Compile Include="Assets\Scripts\soldier\SoldierAnimations.js" />
+     <Compile Include="Assets\Scripts\soldier\SoldierCamera.js" />
+     <Compile Include="Assets\Scripts\soldier\SoldierController.js" />
+     <Compile Include="Assets\Scripts\soldier\SoldierDamageControl.js" />
+     <Compile Include="Assets\Scripts\soldier\WaterInteractions.js" />
+     <Compile Include="Assets\Scripts\weapons\BulletMarkManager.js" />
+     <Compile Include="Assets\Scripts\weapons\BulletMarks.js" />
+     <Compile Include="Assets\Scripts\weapons\Destructable.js" />
+     <Compile Include="Assets\Scripts\weapons\Grenade.js" />
+     <Compile Include="Assets\Scripts\weapons\Gun.js" />
+     <Compile Include="Assets\Scripts\weapons\GunKeyBinder.js" />
+     <Compile Include="Assets\Scripts\weapons\GunManager.js" />
+     <Compile Include="Assets\Scripts\weapons\GunParticles.js" />
+     <Compile Include="Assets\Scripts\weapons\SetChildrenTag.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

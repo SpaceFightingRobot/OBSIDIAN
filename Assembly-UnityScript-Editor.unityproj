@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{FEDE4F53-B89E-7115-F6D1-C71F63C13089}</ProjectGuid>
+	<ProjectGuid>{BCC5A052-BEF1-6054-5B2C-9861286A4EE9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,11 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\RenderCubemapWizard.js" />
-     <Compile Include="Assets\Editor\deactivateMeshRenderers.js" />
-     <None Include="Assets\Shaders\ProgressBar.shader" />
-     <None Include="Assets\Shaders\FadedAddSmooth.shader" />
-     <None Include="Assets\Frameworks\Detonator\Resources\Detonator\Textures\HeatDistort.shader" />
+     <Compile Include="Assets\Scripts\huds\sarge\Editor\SargeHelper.js" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>B:\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -72,9 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{9196B5D8-8E49-8123-40A0-53B15F22E5D7}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{23ECE8D9-D1D6-89E3-3474-6FE4098EE3EA}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{2D30A2D6-14CB-C4D8-B7C7-72C37D7D4D31}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+      <Project>{B6AFF605-B231-F00D-BCB8-BA150E1205AE}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{D091638D-C3A9-87E7-615B-9A656A810F26}</ProjectGuid>
+	<ProjectGuid>{E5A82DAC-00F7-B95E-A435-D35CC21564E2}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+	<AssemblyName>Assembly-UnityScript-Editor-firstpass</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,10 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\DecalEditor.cs" />
-     <Compile Include="Assets\Editor\DecalUVEditorWindow.cs" />
-     <Compile Include="Assets\Editor\TransformCopier.cs" />
-     <Compile Include="Assets\Locomotion System\Editor\LocomotionEditorClass.cs" />
+     <Compile Include="Assets\Standard Assets\Editor\Image Effects\BloomAndFlaresEditor.js" />
+     <Compile Include="Assets\Standard Assets\Editor\Image Effects\ColorCorrectionCurvesEditor.js" />
+     <Compile Include="Assets\Standard Assets\Editor\Image Effects\DepthOfFieldEditor.js" />
+     <Compile Include="Assets\Standard Assets\Editor\Image Effects\EdgeDetectEffectNormalsEditor.js" />
+     <Compile Include="Assets\Standard Assets\Editor\Image Effects\SunShaftsEditor.js" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\Image Based\Sources\Shaders\_DepthOfField\SeparableWeightedBlur.shader" />
      <None Include="Assets\Pro Standard Assets\Glass Refraction\Glass-Stained-BumpDistort.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\Image Based\Sources\Shaders\_BloomAndFlares\AddStuff.shader" />
@@ -143,6 +144,9 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\Image Based\Sources\Shaders\RadialBlurDepthWeighted.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\EdgeDetectX.shader" />
      <None Include="Assets\Shaders\alpha_2sided.shader" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>B:\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -163,16 +167,8 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{B4FB1E93-42DA-9BAB-2216-7B9986044275}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{21FD7C10-E399-7A5A-6F25-E9300AEE8C5D}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{23ECE8D9-D1D6-89E3-3474-6FE4098EE3EA}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{B6AFF605-B231-F00D-BCB8-BA150E1205AE}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript-Editor-firstpass.unityproj">
-      <Project>{E5A82DAC-00F7-B95E-A435-D35CC21564E2}</Project>      <Name>Assembly-UnityScript-Editor-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{B4FB1E93-42DA-9BAB-2216-7B9986044275}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
